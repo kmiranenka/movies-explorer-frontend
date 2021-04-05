@@ -1,0 +1,154 @@
+.about {
+    background: #202020;
+    padding: 110px 50px 0;
+}
+
+.about__header-container {
+    border-bottom: 1px solid #DADADA;
+}
+
+.about__header {
+    margin: 0 0 23px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+.about__box {
+    margin: 70px 0 0;
+}
+
+.about__desctiption-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 110px;
+}
+
+.about__description {
+    width: 50%;
+}
+
+.about__subtitle {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    margin: 0 0 24px;
+    color: #FFFFFF;
+}
+
+.about__desctiption {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.about__description:first-child {
+    margin-right: 10px;
+}
+
+.about__chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__chart_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+}
+
+.about__chart_green {
+    width: 20%;
+    background: #3DDC84;
+    height: 36px;
+    color: #000000;
+}
+
+.about__chart_black {
+    width: 80%;
+    background: #303030;
+    height: 36px;
+    color: #FFFFFF;
+}
+
+.about__chart_first {
+    width: 20%;
+    height: 36px;
+    color: #8B8B8B;
+}
+
+.about__chart_second {
+    width: 80%;
+    height: 36px;
+    color: #8B8B8B;
+}
+
+@media screen and (max-width:582px) {
+    .about__desctiption-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 4px;
+    }
+
+    .about__subtitle {
+        font-size: 18px;
+        line-height: 21px;
+        margin: 0 0 16px;
+    }
+
+    .about__description {
+        font-size: 11px;
+        line-height: 16px;
+        width: 100%;
+        margin-bottom: 56px;
+    }
+
+    .about__box {
+        margin: 60px 0 0;
+    }
+
+    .about__description:first-child {
+        margin-right: 0px;
+    }
+
+    .about__chart_text {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .about {
+        padding: 70px 18px 0;
+    }
+
+    .about__chart_green {
+        width: 35%;
+    }
+
+    .about__chart_black {
+        width: 65%;
+    }
+
+    .about__chart_first {
+        width: 35%;
+    }
+
+    .about__chart_second {
+        width: 65%;
+    }
+
+    .about__header {
+        margin: 0 0 28px;
+        font-size: 18px;
+        line-height: 21px;
+    }
+}
