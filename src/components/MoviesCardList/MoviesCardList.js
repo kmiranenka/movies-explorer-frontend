@@ -7,7 +7,7 @@ function MoviesCardList(props) {
     // const currentUser = React.useContext(CurrentUserContext);
 
     return (<main className="content">
-        <section className="elements" >
+        <ul className="elements" >
             <MoviesCard page={props.page} />
             <MoviesCard page={props.page} />
             <MoviesCard page={props.page} />
@@ -21,7 +21,7 @@ function MoviesCardList(props) {
                  )
             })
         }  */}
-        </section>
+        </ul>
         <button className="elements__more-button">Ещё</button>
     </main>);
 }

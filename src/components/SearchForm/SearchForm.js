@@ -18,7 +18,8 @@ function SearchForm(props) {
                     <input className="search__input" type="text"
                         placeholder="Фильм"
                         value={searchTerm}
-                        onChange={handleChange}></input>
+                        onChange={handleChange}
+                        required></input>
                     <button className="search__button" type="button"><img src={searchButtonIcon} className="search__button-img" alt="Поиск"></img></button>
                 </div>
                 <div className="search__container">
