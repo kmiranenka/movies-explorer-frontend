@@ -1,0 +1,51 @@
+.promo {
+    background-image: url('../../images/promo-bg.svg');
+    height: 560px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.promo__title {
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 52px;
+    margin: 50px 0 0 70px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    width: 528px;
+}
+
+@media screen and (max-width:1168px) {
+    .promo {
+        background-size: auto;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .promo {
+        height: 544px;
+        background-position: bottom;
+        padding-top: 300px;
+        background-position-x: 75%
+    }
+
+    .promo__title {
+        margin: 0 auto 0;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:582px) {
+    .promo {
+        height: 523x;
+        background-position: bottom;
+        background-position-x: 75%;
+        padding-top: 0;
+    }
+
+    .promo__title {
+        font-size: 31px;
+        margin-top: 183px;
+    }
+}

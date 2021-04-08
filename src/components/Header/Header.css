@@ -1,0 +1,48 @@
+.header {
+    padding: 18px 30px 18px;
+}
+
+.header__landing {
+    background: #073042;
+}
+
+.header__logo {
+    max-width: 142px;
+}
+
+.header__logo-button:hover {
+    opacity: 0.6;
+}
+
+.header__logo-button_mobile {
+    margin-bottom: 40px;
+}
+
+.header__logo-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    .header__logo-container {
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:462px) {
+    .header {
+        margin: 0 14px;
+        padding: 18px 0;
+    }
+
+    .header__logo {
+        max-width: 103px;
+    }
+
+}

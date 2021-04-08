@@ -1,0 +1,241 @@
+.popup {
+    min-width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.4s, opacity 0.4s linear;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.popup_opened {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup_dark-background {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.popup__btn-close {
+    position: absolute;
+    right: -55px;
+    top: -50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.popup__btn-close:hover {
+    opacity: 0.6;
+    transition: opacity 0.5s linear;
+}
+
+
+.popup__btn-save_inactive {
+    background: #ffffff;
+    border: 1px solid #000000;
+    ;
+    color: #000000;
+    opacity: 0.2;
+    cursor: auto;
+}
+
+.popup__btn-save_inactive:hover {
+    opacity: 0.2;
+}
+
+.popup__btn-save {
+    width: 358px;
+    height: 50.15px;
+    background: #000000;
+    border: none;
+    border-radius: 2px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 0;
+    margin: 18px 20px 0px;
+    align-self: flex-start;
+}
+
+.popup__btn-save:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s linear;
+}
+
+
+.popup__form {
+    max-width: 430px;
+    height: 330px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: auto;
+}
+
+
+.popup__heading {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: start;
+    min-width: 358px;
+    margin: 34px 0 20px;
+}
+
+
+.popup__input-container {
+    border: none;
+    padding: 0;
+    margin: 34px 0 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.popup__item_type_error {
+    border-bottom: 1px solid #FF0000;
+}
+
+.popup__item {
+    width: 358px;
+    margin: 0;
+    padding: 0;
+    height: 27px;
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.popup__item-error {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(238, 52, 101, 1);
+    margin-left: 0px;
+    margin-top: 10px;
+    visibility: hidden;
+    min-height: 12px;
+    max-width: 396px;
+}
+
+@media screen and (max-width: 486px) {
+    .popup__item-error {
+        max-width: 258px;
+        min-height: 20px;
+    }
+}
+
+@media screen and (max-width: 422px) {
+    .popup__item-error {
+        max-width: 200px;
+    }
+}
+
+.popup__item-error_active {
+    visibility: visible;
+}
+
+@media screen and (max-width: 505px) {
+    .popup__form {
+        max-width: 400px;
+    }
+
+    .popup__btn-save {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 486px) {
+    .popup__item {
+        width: 258px;
+    }
+
+    .popup__input-container {
+        margin-top: 16px;
+    }
+
+    .popup__heading {
+        min-width: 258px;
+    }
+
+    .popup__form {
+        max-width: 350px;
+    }
+
+    .popup__btn-save {
+        width: 258px;
+        font-size: 15px;
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 422px) {
+    .popup__item {
+        width: 200px;
+        height: 24px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .popup__heading {
+        min-width: 50px;
+        font-size: 18px;
+        line-height: 22px;
+        margin-left: 20px;
+        margin-top: 30px;
+        align-self: start;
+    }
+
+    .popup__form {
+        max-width: 240px;
+        max-height: 265px;
+    }
+
+    .popup__btn-save {
+        margin-left: 17px;
+        width: 200px;
+        height: 40px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 10px;
+    }
+
+    .popup__close-icon {
+        width: 40px;
+    }
+
+    .popup__btn-close {
+        right: -42px;
+        top: -35px;
+    }
+}
