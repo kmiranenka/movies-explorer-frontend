@@ -2,6 +2,7 @@ import { apiConfig } from './constants.js'
 class Api {
     constructor(config) {
         this._url = config.url;
+        this._urlFilms = config.urlFilms;
         this._headers = config.headers
     }
 
@@ -22,6 +23,15 @@ class Api {
             .then((res) => {
                 return this._getResponseData(res);
             });
+
+    }
+
+    getAllFilms() {
+        return fetch(`${this._urlFilms}/beatfilm-movies`, {
+            })
+            .then((res) => {
+                return this._getResponseData(res);
+            })
 
     }
 

@@ -1,6 +1,15 @@
 .content {
     display: flex;
     flex-direction: column;
+    padding-top: 70px;
+}
+
+.content__message{
+margin: 120px auto 60px;
+color: #FFFFFF;
+font-size: 20px;
+width: 66%;
+text-align: center;
 }
 
 .elements {
@@ -9,7 +18,7 @@
     grid-template-columns: repeat(auto-fit, minmax(360px, 360px));
     grid-auto-rows: 319px;
     max-width: 1140px;
-    margin: 70px auto 0;
+    margin: 0 auto 0;
     justify-content: center;
     padding: 0;
 }
@@ -59,12 +68,16 @@
 }
 
 @media screen and (max-width: 600px) {
+
+    .content{
+        padding-top: 40px;;
+    }
+
     .elements {
         padding: 0 20px 0px;
         grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
         grid-auto-rows: 271px;
         gap: 16px;
-        margin-top: 40px;
     }
 
     .elements__more-button {

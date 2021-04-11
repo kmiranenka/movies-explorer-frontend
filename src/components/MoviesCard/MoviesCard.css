@@ -5,6 +5,13 @@
     border-radius: 6px;
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.element__link{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 100%;
 }

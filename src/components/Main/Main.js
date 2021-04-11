@@ -8,11 +8,16 @@ import AboutMe from '../AboutMe/AboutMe'
 import Portfolio from '../Portfolio/Portfolio'
 import Footer from '../Footer/Footer'
 import './Main.css'
+import { CurrentUserContext } from '../../utils/context/CurrentUserContext.js';
+
 
 function Main(props) {
 
+    const [currentUser, setCurrentUser] = React.useState(null);
+
     return (
         <div className="page landing" >
+             {currentUser && <CurrentUserContext.Provider value={currentUser}>
             <Header headerButton="landing" />
             <Promo />
             <NavTab />
@@ -21,6 +26,7 @@ function Main(props) {
             <AboutMe />
             <Portfolio />
             <Footer />
+            </CurrentUserContext.Provider>}
         </div>
     );
 }
