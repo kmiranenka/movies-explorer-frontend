@@ -8,26 +8,36 @@ function MoviesCardList(props) {
 
     const { height, width } = useWindowDimensions();
     // const currentUser = React.useContext(CurrentUserContext);
-    const [numberOfItems, setNumberOfItems] = React.useState('');
- 
-    
+    const [numberOfItems, setNumberOfItems] = React.useState(12);
+    const [numbers, setNumbers] = React.useState(3);
+
+
     React.useEffect(() => {
         if (width >= 1280 && width < 768) {
-              setNumberOfItems(6)
-        } 
+            setNumberOfItems(12)
+            setNumbers(3)
+        }
+        if (width <= 768 && width > 480 ) {
+            setNumberOfItems(8)
+            setNumbers(2)
+        }
+        if (width <= 480 && width >= 320) {
+            setNumberOfItems(5)
+            setNumbers(2)
+        }
     }, [])
 
-    function showCards(){
-        if(props.films && props.films.length > 0){
+    function showCards() {
+        if (props.films && props.films.length > 0) {
             return true
-        }else{
+        } else {
             return false
         }
     }
 
     function handleClick() {
-        setNumberOfItems(numberOfItems+3);
-      }
+        setNumberOfItems(numberOfItems + numbers);
+    }
 
     return (<main className="content">
          { props.isLoading && <>
@@ -38,11 +48,12 @@ function MoviesCardList(props) {
             <p className="content__message">{props.message}</p>
             </>
          }
-       { showCards() && !props.isLoading && <>
+       { showCards() && !props.isLoading && 
+       <>
        <ul className="elements" > 
             { props.films.slice(0, numberOfItems).map((film) => {
                 return ( 
-                    <MoviesCard key={film.id} film={film} /> 
+                    <MoviesCard key={film.id} film={film} cardsLiked={props.likedCards}/> 
                  )
             })
         } 

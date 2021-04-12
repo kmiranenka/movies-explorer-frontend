@@ -15,10 +15,12 @@ function Register(props) {
 
     var handleSubmit = (e) => {
         e.preventDefault();
-        if (password && email) {
-            props.handleRegister(e, email, password);
+        if (password && email && userName) {
+            console.log(userName)
+            props.handleRegister(e, email, password,userName);
             setEmail('');
             setPassword('');
+            setUserName('')
         }
     }
 
@@ -31,17 +33,17 @@ function Register(props) {
                     <h1 className="register__form-name">Добро пожаловать!</h1>
                     <fieldset className="register__input-container">
                         <span className="register__item-placeholder">Имя</span>
-                        <input className="register__item register__item_el_email" id="name-input" name="user-name" type="name" required onChange={(e) => { }} />
+                        <input className="register__item register__item_el_email" id="name-input" name="user-name" value={userName} type="name" required onChange={(e) => { setUserName(e.target.value)}} />
                         <span id="name-input-error" className="popup__item-error"></span>
                     </fieldset>
                     <fieldset className="register__input-container">
                         <span className="register__item-placeholder">E-mail</span>
-                        <input className="register__item register__item_el_email" id="email-input" name="email" type="email" required onChange={(e) => { }} />
+                        <input className="register__item register__item_el_email" id="email-input" name="email" value={email} type="email" required onChange={(e) => { setEmail(e.target.value)}} />
                         <span id="email-input-error" className="popup__item-error"></span>
                     </fieldset>
                     <fieldset className="register__input-container">
                         <span className="register__item-placeholder">Пароль</span>
-                        <input className="register__item register__item_el_password" id="password-input" name="password" type="password" required onChange={(e) => { }} />
+                        <input className="register__item register__item_el_password" id="password-input" name="password" value={password} type="password" required onChange={(e) => { setPassword(e.target.value)}} />
                         <span id="password-input-error" className="popup__item-error"></span>
                     </fieldset>
                 </div>

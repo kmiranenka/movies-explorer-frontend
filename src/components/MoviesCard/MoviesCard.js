@@ -1,25 +1,34 @@
 import React from 'react';
-// import { CurrentUserContext } from '../vendor/context/CurrentUserContext';
+import { CurrentUserContext } from '../../vendor/context/CurrentUserContext';
 import './MoviesCard.css'
 import closeIcon from '../../images/close-icon.svg';
 import saveIcon from '../../images/save-icon.svg';
+import { api } from '../../utils/MainApi.js';
 
 function MoviesCard(props) {
 
-  //   const currentUser = React.useContext(CurrentUserContext);
-  //   const isSaved = props.card.likes.some(i => i === currentUser._id);
-  const [isSaved, setIsSaved] = React.useState(false);
+    const currentUser = React.useContext(CurrentUserContext);
+    const isSaved = props.cardsLiked.some(i => i.id === props.film.id);
 
-  function handleLikeClick() {
-    // props.onCardLike(props.card);
-    setIsSaved(!isSaved)
+    function handleLikeClick() {
+      console.log(props.film)
+      api.changeLikeCardStatus(props.film.country, props.film.director, props.film.duration, 
+        props.film.year, props.film.description,'https://api.nomoreparties.co',
+        props.film.trailerLink, props.film.nameRU, props.film.nameEN, 'https://api.nomoreparties.co', 
+        props.film.id, isSaved)
+          .then(() => {
+              isSaved = !isSaved
+          })
+          .catch((err) => {
+              console.log(err);
+          });
   }
 
-  function timeConvert(n) {
-    let rhours = Math.floor(n / 60);
-    var minutes = ((n / 60) - rhours) * 60;
-    var rminutes = Math.round(minutes);
-    return rhours + "ч " + rminutes + "мин";
+    function timeConvert(n) {
+        let rhours = Math.floor(n / 60);
+        var minutes = ((n / 60) - rhours) * 60;
+        var rminutes = Math.round(minutes);
+        return rhours + "ч " + rminutes + "мин";
     }
 
 
