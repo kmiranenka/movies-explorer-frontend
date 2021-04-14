@@ -4,12 +4,12 @@
     padding-top: 70px;
 }
 
-.content__message{
-margin: 120px auto 60px;
-color: #FFFFFF;
-font-size: 20px;
-width: 66%;
-text-align: center;
+.content__message {
+    margin: 120px auto 60px;
+    color: #FFFFFF;
+    font-size: 20px;
+    width: 66%;
+    text-align: center;
 }
 
 .elements {
@@ -69,8 +69,9 @@ text-align: center;
 
 @media screen and (max-width: 600px) {
 
-    .content{
-        padding-top: 40px;;
+    .content {
+        padding-top: 40px;
+        ;
     }
 
     .elements {

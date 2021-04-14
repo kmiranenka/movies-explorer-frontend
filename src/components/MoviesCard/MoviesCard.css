@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.element__link{
+.element__link {
     text-decoration: none;
     display: flex;
     flex-direction: column;

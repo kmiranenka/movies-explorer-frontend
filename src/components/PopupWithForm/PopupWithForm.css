@@ -51,7 +51,7 @@
 }
 
 .popup__btn-save_inactive:hover {
-    opacity: 0.2;
+    opacity: 0.2 !important;
 }
 
 .popup__btn-save {
@@ -71,6 +71,10 @@
     padding: 0;
     margin: 18px 20px 0px;
     align-self: flex-start;
+}
+
+.popup__form-container {
+    position: relative;
 }
 
 .popup__btn-save:hover {
@@ -146,6 +150,10 @@
     visibility: hidden;
     min-height: 12px;
     max-width: 396px;
+}
+
+.popup__item_el_email {
+    margin-top: 20px;
 }
 
 @media screen and (max-width: 486px) {

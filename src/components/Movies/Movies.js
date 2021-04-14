@@ -12,16 +12,10 @@ function Movies(props) {
     const [isLoading, setIsLoading] = React.useState(false);
     const [message, setMessage] = React.useState('Ничего не найдено');
     const [likedCards, setLikedCards] = React.useState([]);
-
-
-    // React.useEffect(() => {
-    //     if (localStorage.getItem('search')) {
-    //           setSearchResults(localStorage.getItem('search'));
-    //     } 
-    // }, [])
+    const jwt = localStorage.getItem('jwt');
 
     React.useEffect(() => {
-        api.getLikedCards() //api.getLikedCards(jwt) 
+        api.getLikedCards(jwt)
             .then((cardsList) => {
                 console.log(cardsList)
                 setLikedCards(cardsList.data)
@@ -31,11 +25,9 @@ function Movies(props) {
             });
     }, [])
 
-    
 
 
     function handleSearchResults(data) {
-        // localStorage.setItem('search', data);
         setSearchResults(data)
         setIsLoading(false)
     }
@@ -55,8 +47,8 @@ function Movies(props) {
     return (
         <div className="page" >
             <Header headerButton="show" page="films" />
-            <SearchForm searchResults = {handleSearchResults} isLoading = {handleLoading} setMessage={handleMessage}/>
-            <MoviesCardList likedCards={likedCards} films={searchResults} isLoading = {isLoading} message = {message} />
+            <SearchForm searchResults={handleSearchResults} isLoading={handleLoading} setMessage={handleMessage} />
+            <MoviesCardList likedCards={likedCards} films={searchResults} isLoading={isLoading} message={message} />
             <Footer />
         </div>
     );

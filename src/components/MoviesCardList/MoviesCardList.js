@@ -7,9 +7,9 @@ import './MoviesCardList.css';
 function MoviesCardList(props) {
 
     const { height, width } = useWindowDimensions();
-    // const currentUser = React.useContext(CurrentUserContext);
     const [numberOfItems, setNumberOfItems] = React.useState(12);
     const [numbers, setNumbers] = React.useState(3);
+    const jwt = localStorage.getItem('jwt');
 
 
     React.useEffect(() => {
@@ -17,7 +17,7 @@ function MoviesCardList(props) {
             setNumberOfItems(12)
             setNumbers(3)
         }
-        if (width <= 768 && width > 480 ) {
+        if (width <= 768 && width > 480) {
             setNumberOfItems(8)
             setNumbers(2)
         }
@@ -25,6 +25,7 @@ function MoviesCardList(props) {
             setNumberOfItems(5)
             setNumbers(2)
         }
+
     }, [])
 
     function showCards() {
@@ -35,34 +36,58 @@ function MoviesCardList(props) {
         }
     }
 
+    function showSavedCards() {
+        console.log(props.savedMovies)
+        if (props.savedMovies && props.savedMovies.length > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     function handleClick() {
         setNumberOfItems(numberOfItems + numbers);
     }
 
+    console.log(props.savedMovies)
+
     return (<main className="content">
-         { props.isLoading && <>
+        { props.isLoading && <>
             <Preloader />
-            </>
-         }
-          { !showCards() && !props.isLoading && <>
-            <p className="content__message">{props.message}</p>
-            </>
-         }
-       { showCards() && !props.isLoading && 
-       <>
-       <ul className="elements" > 
-            { props.films.slice(0, numberOfItems).map((film) => {
-                return ( 
-                    <MoviesCard key={film.id} film={film} cardsLiked={props.likedCards}/> 
-                 )
-            })
-        } 
-        </ul>
-        { props.films.length > numberOfItems &&
-        <button className="elements__more-button" onClick={handleClick}>Ещё</button>
-        }
         </>
-    }
+        }
+        { !showCards() && !showSavedCards() && !props.isLoading && <>
+            <p className="content__message">{props.message}</p>
+        </>
+        }
+        { showCards() && !props.isLoading &&
+            <>
+                <ul className="elements" >
+                    {props.films.slice(0, numberOfItems).map((film) => {
+                        return (
+                            <MoviesCard key={film.id} film={film} cardsLiked={props.likedCards} />
+                        )
+                    })
+                    }
+                </ul>
+                { props.films.length > numberOfItems &&
+                    <button className="elements__more-button" onClick={handleClick}>Ещё</button>
+                }
+            </>
+        }
+
+        { showSavedCards() && !props.isLoading &&
+            <>
+                <ul className="elements" >
+                    {props.savedMovies.map((movie) => {
+                        return (
+                            <MoviesCard key={movie._id} film={movie} cardsLiked={props.savedMovies} page={"saved"} saved={true} handleDislikeClick={props.handleDislike} />
+                        )
+                    })
+                    }
+                </ul>
+            </>
+        }
     </main>);
 }
 

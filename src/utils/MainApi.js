@@ -3,7 +3,6 @@ class Api {
     constructor(config) {
         this._url = config.url;
         this._headers = config.headers
-        this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDczMmY0NmNkM2Y4YjMzYTA0NmJjNmMiLCJpYXQiOjE2MTgxNjE1MDksImV4cCI6MTYxODc2NjMwOX0.tDjGClQ0KL3efeK88t2BMRp2JJjpqEJV78W7PQfK3Us'
     }
 
     _getResponseData(res) {
@@ -26,7 +25,7 @@ class Api {
 
     }
 
-    getAllFilms() {
+    getAllFilms(token) {
         return fetch(`${this._urlFilms}/beatfilm-movies`, {})
             .then((res) => {
                 return this._getResponseData(res);
@@ -34,10 +33,10 @@ class Api {
 
     }
 
-    getLikedCards() { //getLikedCards(token) {
+    getLikedCards(token) { 
         return fetch(`${this._url}/movies`, {
                 headers: {
-                    'Authorization': `Bearer ${this.token}`,
+                    'Authorization': `Bearer ${token}`,
                 }
             })
             .then((res) => {
@@ -46,7 +45,7 @@ class Api {
 
     }
 
-    updateUserInfo(nameInfo, jobInfo, token) {
+    updateUserInfo(nameInfo, email, token) {
         return fetch(`${this._url}/users/me`, {
                 method: 'PATCH',
                 headers: {
@@ -55,7 +54,7 @@ class Api {
                 },
                 body: JSON.stringify({
                     name: nameInfo,
-                    about: jobInfo
+                    email: email
                 })
             })
             .then((res) => {
@@ -66,12 +65,13 @@ class Api {
 
 
     changeLikeCardStatus(country, director, duration, year, description, image,
-        trailer, nameRU, nameEN, thumbnail, movieId, isLiked) {
+        trailer, nameRU, nameEN, thumbnail, movieId, isLiked, token) {
         if (!isLiked) {
             return fetch(`${this._url}/movies`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${this.token}`,
+                        'Content-Type': this._headers.contentType,
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         country: country,
@@ -92,7 +92,7 @@ class Api {
                 })
 
         } else {
-            return fetch(`${this._url}/cards/${cardId}/likes`, {
+            return fetch(`${this._url}/movies/${movieId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -105,21 +105,19 @@ class Api {
         }
     }
 
-    updateUserAvatar(imageLink, token) {
-        return fetch(`${this._url}/users/me/avatar`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': this._headers.contentType,
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    avatar: imageLink
-                })
-            })
-            .then((res) => {
-                return this._getResponseData(res);
-            })
+    dislikeCardStatus(movieId, token){
+       return fetch(`${this._url}/movies/${movieId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then((res) => {
+            return this._getResponseData(res);
+        })
+
     }
+
 }
 
 export const api = new Api(apiConfig);
