@@ -5,6 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import Footer from '../Footer/Footer'
 import { api } from '../../utils/MainApi.js';
 import './Movies.css'
+import { search } from '../../utils/search.js';
 
 function Movies(props) {
 
@@ -13,16 +14,21 @@ function Movies(props) {
     const [message, setMessage] = React.useState('Ничего не найдено');
     const [likedCards, setLikedCards] = React.useState([]);
     const jwt = localStorage.getItem('jwt');
+    let search = JSON.parse(localStorage.getItem('search'))
 
     React.useEffect(() => {
         api.getLikedCards(jwt)
             .then((cardsList) => {
-                console.log(cardsList)
                 setLikedCards(cardsList.data)
             })
             .catch((err) => {
                 console.log(err);
             });
+           
+         if(search){
+             setSearchResults(search)
+         }
+
     }, [])
 
 
@@ -30,9 +36,9 @@ function Movies(props) {
     function handleSearchResults(data) {
         setSearchResults(data)
         setIsLoading(false)
+        localStorage.setItem('search', JSON.stringify(data));
     }
 
-    console.log(searchResults)
 
     function handleLoading(loading) {
         setIsLoading(loading)
@@ -46,7 +52,7 @@ function Movies(props) {
 
     return (
         <div className="page" >
-            <Header headerButton="show" page="films" />
+            <Header loggedIn={true} page ={'films'}/>
             <SearchForm searchResults={handleSearchResults} isLoading={handleLoading} setMessage={handleMessage} />
             <MoviesCardList likedCards={likedCards} films={searchResults} isLoading={isLoading} message={message} />
             <Footer />

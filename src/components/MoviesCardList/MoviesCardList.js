@@ -9,8 +9,6 @@ function MoviesCardList(props) {
     const { height, width } = useWindowDimensions();
     const [numberOfItems, setNumberOfItems] = React.useState(12);
     const [numbers, setNumbers] = React.useState(3);
-    const jwt = localStorage.getItem('jwt');
-
 
     React.useEffect(() => {
         if (width >= 1280 && width < 768) {
@@ -37,7 +35,6 @@ function MoviesCardList(props) {
     }
 
     function showSavedCards() {
-        console.log(props.savedMovies)
         if (props.savedMovies && props.savedMovies.length > 0) {
             return true
         } else {
@@ -48,8 +45,6 @@ function MoviesCardList(props) {
     function handleClick() {
         setNumberOfItems(numberOfItems + numbers);
     }
-
-    console.log(props.savedMovies)
 
     return (<main className="content">
         { props.isLoading && <>

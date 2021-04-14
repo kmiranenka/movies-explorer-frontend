@@ -51,7 +51,7 @@ function Profile(props) {
     return (
         <div className="page" >
             {currentUser && <CurrentUserContext.Provider value={currentUser}>
-                <Header headerButton="show" />
+                <Header loggedIn={true} />
                 <section className="profile">
                     <div className="profile__info info">
                         <h1 className="info__header">Привет, {currentUser.name}!</h1>

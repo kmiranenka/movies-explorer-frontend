@@ -11,7 +11,6 @@ function MoviesCard(props) {
   const jwt = localStorage.getItem('jwt');
   const liked = props.cardsLiked.some(i => i.movieId === String(props.film.id))
   const [isSaved, setIsSaved] = React.useState(liked);
-  console.log(props.film)
 
   function handleLikeClick() {
     api.changeLikeCardStatus(props.film.country, props.film.director, props.film.duration,
@@ -31,7 +30,7 @@ function MoviesCard(props) {
   }
 
   function timeConvert(n) {
-    let rhours = Math.floor(n / 60);
+    const rhours = Math.floor(n / 60);
     var minutes = ((n / 60) - rhours) * 60;
     var rminutes = Math.round(minutes);
     return rhours + "ч " + rminutes + "мин";

@@ -10,6 +10,23 @@ function SearchForm(props) {
     const [showError, setShowError] = React.useState(false);
     const [isChecked, setIsChecked] = React.useState(false);
     const [films, setFilms] = React.useState([]);
+    
+
+    React.useEffect(() => {
+        api.getAllFilms().
+        then((films) => {
+            setFilms(films)
+
+        })
+        .catch((err) => {
+            props.isLoading(false)
+            props.setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+            console.log(err);
+        });
+
+    }, [])
+
+    
     const handleChange = event => {
         setSearchTerm(event.target.value);
         if (searchTerm) {
@@ -36,19 +53,9 @@ function SearchForm(props) {
             if (props.page === "saved") {
                 props.searchResults(search(props.savedFilms, searchTerm, isChecked), isChecked)
                 setSearchTerm('')
-            } else {
-                api.getAllFilms().
-                    then((films) => {
-                        setFilms(films)
+            } else if (films) {
                         props.searchResults(search(films, searchTerm, isChecked))
                         setSearchTerm('')
-
-                    })
-                    .catch((err) => {
-                        props.isLoading(false)
-                        props.setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
-                        console.log(err);
-                    });
             }
 
         }

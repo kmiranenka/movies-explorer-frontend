@@ -105,7 +105,7 @@ class App extends React.Component {
             <ErrorPage />
           </Route>
           <Route exact path="/">
-            <Main />
+            <Main loggedIn={this.state.loggedIn} />
           </Route>
           <Route path="/signup">
             <Register handleRegister={this.handleRegister} errorPopup={this.state.errorPopup} isPopupOpen={this.state.isPopupOpen} onPopupClose={this.closePopup} />

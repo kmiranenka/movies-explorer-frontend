@@ -3,7 +3,7 @@ import './ErrorPage.css'
 import { useHistory } from "react-router-dom";
 
 function ErrorPage(props) {
-    let history = useHistory();
+    const history = useHistory();
 
     return (
         <div className="page error" >

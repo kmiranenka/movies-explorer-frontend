@@ -56,7 +56,7 @@ function SavedMovies(props) {
 
     return (
         <div className="page" >
-            <Header headerButton="show" page="saved" />
+            <Header loggedIn={true} page ={'saved'}/>
             <SearchForm page="saved" savedFilms={likedCards} searchResults={handleSearchResults} isLoading={handleLoading} setMessage={handleMessage} />
             <MoviesCardList page="saved" savedMovies={resultCards} isLoading={isLoading} message={message} handleDislike={handleDislike} />
             <Footer />

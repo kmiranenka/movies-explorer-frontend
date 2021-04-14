@@ -8,15 +8,13 @@ import AboutMe from '../AboutMe/AboutMe'
 import Portfolio from '../Portfolio/Portfolio'
 import Footer from '../Footer/Footer'
 import './Main.css'
-import { api } from '../../utils/MainApi.js';
-
 
 
 function Main(props) {
 
     return (
         <div className="page landing" >
-            <Header headerButton="landing" />
+            <Header loggedIn={props.loggedIn} />
             <Promo />
             <NavTab />
             <AboutProject />
