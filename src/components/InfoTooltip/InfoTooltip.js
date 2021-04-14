@@ -2,6 +2,7 @@ import React from 'react';
 import acceptedImg from '../../images/accepted-img.svg';
 import failedImg from '../../images/failed-img.svg';
 import closeIcon from '../../images/close-icon.svg';
+import './InfoTooltip.css'
 
 
 function InfoTooltip(props) {
@@ -14,7 +15,7 @@ function InfoTooltip(props) {
                 </>}
                 {!props.errorPopup && <>
                     <img className="popup__info-image" src={acceptedImg} alt="Вы успешно зарегистрировались!" />
-                    <h2 className="popup__info-heading">Вы успешно<br />зарегистрировались!</h2>
+                    <h2 className="popup__info-heading">Изменения сохранены!</h2>
                 </>}
                 <button className="popup__btn-close" type="reset" name="close" onClick={props.onClose}>
                     <img className="popup__close-icon" src={closeIcon} alt="Закрыть" />

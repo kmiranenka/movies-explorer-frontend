@@ -9,11 +9,12 @@ import Portfolio from '../Portfolio/Portfolio'
 import Footer from '../Footer/Footer'
 import './Main.css'
 
+
 function Main(props) {
 
     return (
         <div className="page landing" >
-            <Header headerButton="landing" />
+            <Header loggedIn={props.loggedIn} />
             <Promo />
             <NavTab />
             <AboutProject />

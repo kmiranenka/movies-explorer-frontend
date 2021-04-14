@@ -34,7 +34,7 @@
 .search__input {
     background: #222222;
     border: none;
-    width: 100%;
+    width: 98%;
     font-weight: normal;
     font-size: 18px;
     line-height: 20px;
@@ -99,6 +99,21 @@
     background-color: #3DDC84;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+.search__input-container {
+    width: 100%;
+    position: relative;
+}
+
+.search__input-error {
+    margin-top: 3px;
+    position: absolute;
+    font-size: 12px;
+    height: 35px;
+    left: 3px;
+    bottom: -39px;
+    color: #EE3465;
 }
 
 input:checked+.search__slider {

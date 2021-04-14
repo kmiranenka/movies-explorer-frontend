@@ -1,7 +1,7 @@
 export const apiConfig = {
-    url: 'https://api.mironenko.students.nomoredomains.icu',
+    url: 'https://api.mironenko.kate.students.nomoredomains.icu',
+    urlFilms: ' https://api.nomoreparties.co',
     headers: {
-        authorization: 'd8f573f5-3d39-4e5c-8f4c-7d486a1ab9c2',
         contentType: 'application/json'
     }
 }

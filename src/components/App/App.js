@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch,  withRouter } from 'react-router-dom';
 import Register from '../Register/Register.js'
 import Login from '../Login/Login.js'
 import * as auth from '../../utils/auth.js';
@@ -10,12 +10,11 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Main from '../Main/Main';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: true, //сhange to false
+      loggedIn: false,
       currentUser: {
         name: '',
         about: '',
@@ -33,15 +32,16 @@ class App extends React.Component {
     this.handleTokenCheck();
   }
 
-  handleLogin(e, email, password) {
 
+
+  handleLogin(email, password) {
     auth.authorize(email, password)
       .then((data) => {
         if (data.token) {
           this.setState({
             loggedIn: true,
           }, () => {
-            this.props.history.push('/');
+            this.props.history.push('/movies');
           });
         } else {
 
@@ -54,17 +54,15 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-  handleRegister(e, email, password) {
-    auth.register(email, password).then((res) => {
+  handleRegister(email, password, name) {
+    auth.register(email, password, name).then((res) => {
       if (res) {
+        this.handleLogin(email, password)
         this.setState({
-          isPopupOpen: true,
-          errorPopup: false
-        })
-      } else {
-        this.setState({
-          isPopupOpen: true,
-          errorPopup: true
+          currentUser: {
+            name: name,
+            email: email,
+          },
         })
       }
     })
@@ -77,54 +75,48 @@ class App extends React.Component {
   }
 
   handleTokenCheck() {
-    // if (localStorage.getItem('jwt')) {
-    //   const jwt = localStorage.getItem('jwt');
-    //   auth.getContent(jwt).then((res) => {
-    //     if (res) {
-    //       console.log(res)
-    //       const userEmail = res.data.email;
-    //       const name = res.data.name;
-    //       const about = res.data.about;
-    //       const avatar = res.data.avatar;
-    //       this.setState({
-    //         loggedIn: true,
-    //         email: userEmail,
-    //         currentUser:{
-    //           name: name,
-    //           about: about,
-    //           avatar: avatar,
-    //         }
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      auth.getContent(jwt).then((res) => {
+        if (res) {
+          const userEmail = res.data.email;
+          const name = res.data.name;
+          this.setState({
+            loggedIn: true,
+            email: userEmail,
+            currentUser: {
+              name: name,
+              email: userEmail,
+            }
 
-    //       }, () => {
-    //         this.props.history.push("/");
-    //       });
-    //     }
-    //   });
-    // }
+          }, () => {
+            this.props.history.push('/movies');
+          });
+        }
+      });
+    }
   }
 
   render() {
     return (
-
       <>
         <Switch>
-          <ProtectedRoute exact path="/profile" loggedIn={this.state.loggedIn} component={Profile} userEmail={this.state.email} user={this.state.currentUser} />
-          <ProtectedRoute exact path="/movies" loggedIn={this.state.loggedIn} component={Movies} userEmail={this.state.email} user={this.state.currentUser} />
-          <ProtectedRoute exact path="/saved-movies" loggedIn={this.state.loggedIn} component={SavedMovies} userEmail={this.state.email} user={this.state.currentUser} />
+          <Route exact path="/error">
+            <ErrorPage />
+          </Route>
+          <Route exact path="/">
+            <Main loggedIn={this.state.loggedIn} />
+          </Route>
           <Route path="/signup">
             <Register handleRegister={this.handleRegister} errorPopup={this.state.errorPopup} isPopupOpen={this.state.isPopupOpen} onPopupClose={this.closePopup} />
           </Route>
           <Route path="/signin">
             <Login handleLogin={this.handleLogin} isPopupOpen={this.state.isPopupOpen} onPopupClose={this.closePopup} />
           </Route>
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route exact path="/error">
-            <ErrorPage />
-          </Route>
+          <ProtectedRoute exact path="/profile" loggedIn={this.state.loggedIn} component={Profile} userEmail={this.state.email} user={this.state.currentUser} />
+          <ProtectedRoute exact path="/movies" loggedIn={this.state.loggedIn} component={Movies} />
+          <ProtectedRoute exact path="/saved-movies" loggedIn={this.state.loggedIn} component={SavedMovies} />
         </Switch>
-
       </>
     );
   }
